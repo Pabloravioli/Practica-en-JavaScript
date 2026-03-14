@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<script src="https://cdn.tailwindcss.com"></script>
+<title>Adivina el número</title>
+</head>
+
+<body class="min-h-screen flex items-center justify-center bg-gray-100">
+
+<main class="flex flex-col items-center text-center gap-4 bg-white p-8 rounded-xl shadow-md w-80">
+
+    <h1 class="text-2xl font-bold text-gray-800">
+        Adivina el número entre 1 y 10
+    </h1>
+
+    <label class="text-gray-700">
+        Ingrese el número
+    </label>
+
+    <input 
+        type="text" 
+        id="myText"
+        class="border border-gray-300 rounded-md px-3 py-2 w-full text-center focus:outline-none focus:ring-2 focus:ring-blue-400"
+    >
+
+    <button 
+        type="submit" 
+        id="mySubmit"
+        class="bg-blue-500 text-white px-4 py-2 rounded-lg hover:bg-blue-600 transition"
+    >
+        Aceptar
+    </button>
+
+    <p id="pista" class="text-gray-700"></p>
+    <p id="respuestaCorrecta" class="font-semibold text-green-600"></p>
+
+</main>
+
+<script src="adivinador.js"></script>
+
+</body>
+</html>

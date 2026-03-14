@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <title>Document</title>
+</head>
+<body class=" min-h-screen flex justify-center items-center">
+
+    <form class="flex flex-col justify-center items-center text-center rounded-3xl  border border-gray-100 shadow-xl gap-8 p-6">
+        <div class="flex flex-col gap-4">
+            <h1 class="text-2xl">Conversor de Temperatura</h1>
+            <input type="number" id="textBox" value="0" class="border border-black  rounded-lg">
+        </div>
+        
+        <div class="flex gap-16">
+            <div>
+                <input type="radio" id = "toFahrenheit" name="unit">
+                <label for="toFahrenheit">Celsius a Fahrenheit</label>
+            </div>
+
+            <div>
+                <input type="radio" id = "toCelsius" name="unit">
+                <label for="toCelsius">Fahrenheit a Celsius</label>
+            </div>
+        </div>
+
+        <div" class="flex flex-col gap-4">
+            <button class="rounded-lg border px-6 py-3  border-orange-100  bg-orange-300 " type = "button" onclick="convert()">Aceptar</button>
+            <p id="result"></p>
+        </div>
+    </form>
+
+    <script src="conversor.js"></script>
+</body>
+</html>
