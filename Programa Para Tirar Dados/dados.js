@@ -15,7 +15,7 @@ function tirarDados(){
 
         const valor =Math.floor( Math.random()*6)+1;
        valores.push(valor);
-       imagenes.push(`<img src ="imagenes/${valor}.svg" alt = "Dado ${valor}">`);
+       imagenes.push(`<img src ="imagenes/${valor}.svg" alt = "Dado ${valor}" class="w-16">`);
     }
     
     dadoResultado.textContent = `Dado: ${valores.join(", ")}`;
