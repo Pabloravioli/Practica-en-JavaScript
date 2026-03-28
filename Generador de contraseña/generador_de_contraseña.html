@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <title>Generador de contraseña</title>
+</head>
+<body>
+    <main>
+        <h1>Genera tu contraseña</h1>
+        <label for="tamañoDeContraseña">Ingrese la cantidad de caracteres de la contraseña</label>
+        <input type="number" id="tamañoDeContraseña" min="4" max="20">
+        <p>Minimo 4</p>
+        <p>maximo 20</p>
+
+        <label for="inclurMinisculas">Incluir letras minusculas</label>
+        <input type="radio" id="inclurMinisculas" name="opcion">
+
+        <label for="inclurMayusculas">Incluir letras mayusculas</label>
+        <input type="radio" id="inclurMayusculas" name="opcion">
+
+        <label for="inclurNumeros">Incluir numeros</label>
+        <input type="radio" id="inclurNumeros" name="opcion">
+
+        <label for="inclurSimbolos">Incluir letras simbolos</label>
+        <input type="radio" id="inclurSimbolos" name="opcion">
+
+        <button  onclick="generarContraseña()">Aceptar</button>
+
+        <p id="contraseñaCreada"></p>
+
+
+    </main>
+    
+
+    <script src="generador_de_contraseña.js"></script>
+</body>
+</html>
