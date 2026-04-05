@@ -53,16 +53,31 @@ function generarContraseña(){
 
             contraseñaCreada.textContent = resultado;
 
-        }
+        } 
 
         
        
         
     }
-
-
-    
-   
-
  
 }
+
+copiarContraseña.onclick = function(){
+
+    let mensajeDeCopia;
+    let contraseña = contraseñaCreada.textContent;
+    if(!contraseña){
+        mensajeDeCopia = "Tienes que crear una contraseña primero";
+        mensaje.textContent = mensajeDeCopia;
+
+    }
+    else{
+        navigator.clipboard.writeText(contraseña);
+        mensaje.textContent = "Copiado!";
+        setTimeout(() => {
+            mensaje.textContent = "Copiar";
+            }, 2000);
+    }
+    
+}
+
