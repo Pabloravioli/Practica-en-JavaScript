@@ -6,6 +6,7 @@ const incluirMayusculas = document.getElementById("incluirMayusculas");
 const incluirNumeros = document.getElementById("incluirNumeros");
 const incluirSimbolos = document.getElementById("incluirSimbolos");
 const contraseñaCreada = document.getElementById("contraseñaCreada");
+const fortalezaDeContraseña = document.getElementById("fortalezaDeContraseña");
 
  
 
@@ -59,6 +60,40 @@ function generarContraseña(){
        
         
     }
+
+    let tieneMinusculas = /[a-z]/.test(resultado);  //El .test se encarga de buscar el patron indicado por ejemplo entre /[a-z]/ en resultado sino encuentra false y si lo encuentra True
+    let tieneMayusculas = /[A-Z]/.test(resultado);
+    let tieneNumeros = /[0-9]/.test(resultado);
+    let tieneSimbolos =  /[^a-zA-Z0-9]/.test(resultado);
+
+    let mensajeDeNivel;
+
+    let nivel = 0;
+
+    if(tieneMinusculas == true){
+        nivel += 1;
+    }
+    if(tieneMayusculas == true){
+        nivel +=1;
+    }
+    if(tieneNumeros == true){
+        nivel += 1;
+    }
+    if(tieneSimbolos == true){
+        nivel +=1;
+    }
+
+    if(resultado.length < 6 && nivel >= 1){
+
+        fortalezaDeContraseña.textContent = "Contraseña Debil";
+
+    }
+    else if(resultado.length > 6 && nivel >= 1 ){
+        fortalezaDeContraseña.textContent = "Contraseña Normal";
+    }
+    else{
+        fortalezaDeContraseña.textContent = "Contraseña Fuerte";
+    }
  
 }
 
@@ -75,7 +110,7 @@ copiarContraseña.onclick = function(){
         navigator.clipboard.writeText(contraseña);
         mensaje.textContent = "Copiado!";
         setTimeout(() => {
-            mensaje.textContent = "Copiar";
+            mensaje.textContent = "";
             }, 2000);
     }
     
