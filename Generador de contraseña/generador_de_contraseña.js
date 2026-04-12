@@ -7,13 +7,14 @@ const incluirNumeros = document.getElementById("incluirNumeros");
 const incluirSimbolos = document.getElementById("incluirSimbolos");
 const contraseñaCreada = document.getElementById("contraseñaCreada");
 const fortalezaDeContraseña = document.getElementById("fortalezaDeContraseña");
-
+const mensaje2 = document.getElementById("mensaje2");
  
 
 function generarContraseña(){
 
     let resultado = "";
     let caracteresPermitidos = "";
+    let ningunCheckboxMarcado = "";
 
     const tamaño = tamañoDeContraseña.value;
 
@@ -37,8 +38,12 @@ function generarContraseña(){
         caracteresPermitidos += incluirMayusculas.checked ? mayusculas: "";
         caracteresPermitidos += incluirNumeros.checked? numeros: "";
         caracteresPermitidos += incluirSimbolos.checked? simbolos: "";
-        
-        if(tamañoNumero < 4 || tamañoNumero > 20 ){
+
+        if(caracteresPermitidos==""){
+            mensaje2.textContent = "Marque al menos una casilla";
+        }
+        else{
+            if(tamañoNumero < 4 || tamañoNumero > 20 ){
 
             resultado = "Longitud invalida" ;
             contraseñaCreada.textContent = resultado;
@@ -55,6 +60,12 @@ function generarContraseña(){
             contraseñaCreada.textContent = resultado;
 
         } 
+        }
+        
+
+       
+        
+     
 
         
        
@@ -88,11 +99,14 @@ function generarContraseña(){
         fortalezaDeContraseña.textContent = "Contraseña Debil";
 
     }
-    else if(resultado.length > 6 && nivel >= 1 ){
+    else if(resultado.length >= 6 && nivel <= 2  ){
         fortalezaDeContraseña.textContent = "Contraseña Normal";
     }
-    else{
+    else if(resultado.length > 6 && nivel >= 3){
         fortalezaDeContraseña.textContent = "Contraseña Fuerte";
+    }
+    else{
+        fortalezaDeContraseña.textContent = "";
     }
  
 }
