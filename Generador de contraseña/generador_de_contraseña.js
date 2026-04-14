@@ -43,24 +43,38 @@ function generarContraseña(){
             mensaje2.textContent = "Marque al menos una casilla";
         }
         else{
+            mensaje2.textContent = "";
+
             if(tamañoNumero < 4 || tamañoNumero > 20 ){
+                
+            
 
-            resultado = "Longitud invalida" ;
-            contraseñaCreada.textContent = resultado;
+                resultado = "Longitud invalida" ;
+                contraseñaCreada.textContent = resultado;
 
-        }
-        else{
+            }
+            else{
+                
 
-            for (let i=0;i<tamañoNumero;i++){
 
-                const index = Math.floor(Math.random()*caracteresPermitidos.length);
-                resultado += caracteresPermitidos[index];
+                for (let i=0;i<tamañoNumero;i++){
+
+                    const index = Math.floor(Math.random()*caracteresPermitidos.length);
+                    resultado += caracteresPermitidos[index];
                 }
 
-            contraseñaCreada.textContent = resultado;
 
-        } 
+                contraseñaCreada.textContent = resultado;
+
+            } 
+
+
+
+
         }
+        
+       
+        
         
 
        
@@ -94,15 +108,15 @@ function generarContraseña(){
         nivel +=1;
     }
 
-    if(resultado.length < 6 && nivel >= 1){
+    if(resultado.length < 6 ){
 
         fortalezaDeContraseña.textContent = "Contraseña Debil";
 
     }
-    else if(resultado.length >= 6 && nivel <= 2  ){
+    else if(resultado.length < 10 && nivel >=1 ){
         fortalezaDeContraseña.textContent = "Contraseña Normal";
     }
-    else if(resultado.length > 6 && nivel >= 3){
+    else if(resultado.length >= 10 && nivel >= 1){
         fortalezaDeContraseña.textContent = "Contraseña Fuerte";
     }
     else{
