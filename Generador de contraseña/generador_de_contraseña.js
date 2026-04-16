@@ -8,7 +8,7 @@ const incluirSimbolos = document.getElementById("incluirSimbolos");
 const contraseñaCreada = document.getElementById("contraseñaCreada");
 const fortalezaDeContraseña = document.getElementById("fortalezaDeContraseña");
 const mensaje2 = document.getElementById("mensaje2");
- 
+const mensaje = document.getElementById("mensaje");
 
 function generarContraseña(){
 
@@ -26,12 +26,13 @@ function generarContraseña(){
 
     if (tamaño == ""){
 
-        resultado = "Ingrese al menos una opcion" ;
+        resultado = "Ingrese al menos un numero" ;
         contraseñaCreada.textContent = resultado;
+        resultado = "";
     }
    
     else{
-
+        contraseñaCreada.textContent = "";
         const tamañoNumero = Number(tamañoDeContraseña.value);
 
         caracteresPermitidos += incluirMinusculas.checked ? minusculas: "";
@@ -40,7 +41,8 @@ function generarContraseña(){
         caracteresPermitidos += incluirSimbolos.checked? simbolos: "";
 
         if(caracteresPermitidos==""){
-            mensaje2.textContent = "Marque al menos una casilla";
+            fortalezaDeContraseña.textContent = "";
+            mensaje2.textContent = "Marque al menos una opcion";
         }
         else{
             mensaje2.textContent = "";
@@ -50,7 +52,9 @@ function generarContraseña(){
             
 
                 resultado = "Longitud invalida" ;
+                fortalezaDeContraseña.textContent = "";
                 contraseñaCreada.textContent = resultado;
+                
 
             }
             else{
@@ -66,64 +70,61 @@ function generarContraseña(){
 
                 contraseñaCreada.textContent = resultado;
 
-            } 
+                let tieneMinusculas = /[a-z]/.test(resultado);  //El .test se encarga de buscar el patron indicado por ejemplo entre /[a-z]/ en resultado sino encuentra false y si lo encuentra True
+                let tieneMayusculas = /[A-Z]/.test(resultado);
+                let tieneNumeros = /[0-9]/.test(resultado);
+                let tieneSimbolos =  /[^a-zA-Z0-9]/.test(resultado);
+       
+                let mensajeDeNivel;
+
+                let nivel = 0;
+
+                if(tieneMinusculas == true){
+                nivel += 1;
+                }
+                if(tieneMayusculas == true){
+                nivel +=1;
+                }
+                if(tieneNumeros == true){
+                nivel += 1;
+                }
+                if(tieneSimbolos == true){
+                nivel +=1;
+                }
+
+                if(resultado.length < 6 && resultado.length > 0){
+
+                fortalezaDeContraseña.textContent = "Contraseña Debil";
+
+                }
+                else if(resultado.length < 10 && nivel >=1 ){
+                fortalezaDeContraseña.textContent = "Contraseña Normal";
+                }
+                else if(resultado.length >= 10 && nivel >= 1){
+                fortalezaDeContraseña.textContent = "Contraseña Fuerte";
+                }
+                else{
+                fortalezaDeContraseña.textContent = "";
+                }    
+            }   
 
 
 
 
         }
         
-       
-        
-        
-
-       
-        
-     
-
-        
-       
-        
-    }
-
-    let tieneMinusculas = /[a-z]/.test(resultado);  //El .test se encarga de buscar el patron indicado por ejemplo entre /[a-z]/ en resultado sino encuentra false y si lo encuentra True
-    let tieneMayusculas = /[A-Z]/.test(resultado);
-    let tieneNumeros = /[0-9]/.test(resultado);
-    let tieneSimbolos =  /[^a-zA-Z0-9]/.test(resultado);
-
-    let mensajeDeNivel;
-
-    let nivel = 0;
-
-    if(tieneMinusculas == true){
-        nivel += 1;
-    }
-    if(tieneMayusculas == true){
-        nivel +=1;
-    }
-    if(tieneNumeros == true){
-        nivel += 1;
-    }
-    if(tieneSimbolos == true){
-        nivel +=1;
-    }
-
-    if(resultado.length < 6 ){
-
-        fortalezaDeContraseña.textContent = "Contraseña Debil";
-
-    }
-    else if(resultado.length < 10 && nivel >=1 ){
-        fortalezaDeContraseña.textContent = "Contraseña Normal";
-    }
-    else if(resultado.length >= 10 && nivel >= 1){
-        fortalezaDeContraseña.textContent = "Contraseña Fuerte";
-    }
-    else{
-        fortalezaDeContraseña.textContent = "";
-    }
  
+    }
+        
+
+       
+
+        
 }
+
+    
+
+    
 
 copiarContraseña.onclick = function(){
 
@@ -135,6 +136,7 @@ copiarContraseña.onclick = function(){
 
     }
     else{
+        mensaje.textContent = "";
         navigator.clipboard.writeText(contraseña);
         mensaje.textContent = "Copiado!";
         setTimeout(() => {
